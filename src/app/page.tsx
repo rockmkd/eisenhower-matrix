@@ -7,7 +7,7 @@ import AddTodoForm from "@/components/AddTodoForm";
 type Todo = {
   id: number;
   title: string;
-  quadrant: "Do" | "Decide" | "Delegate" | "Delete";
+  quadrant: "UrgentImportant" | "UrgentLessImportant" | "LessUrgentImportant" | "LessUrgentLessImportant" | "Backlog";
 };
 
 const TodoPage = () => {
@@ -18,20 +18,22 @@ const TodoPage = () => {
     if (storedTodos) {
       setTodos(JSON.parse(storedTodos));
     }
+    setTodos([{id: 1, title: 'test', quadrant: 'Backlog'}]);
+
   }, []);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  const handleAddTodo = (title: string, quadrant: string) => {
-    const newTodo: Todo = {
-      id: todos.length + 1,
-      title,
-      quadrant: quadrant as Todo["quadrant"],
-    };
-    setTodos([...todos, newTodo]);
-  };
+  // const handleAddTodo = (title: string, quadrant: string) => {
+  //   const newTodo: Todo = {
+  //     id: todos.length + 1,
+  //     title,
+  //     quadrant: quadrant as Todo["quadrant"],
+  //   };
+  //   setTodos([...todos, newTodo]);
+  // };
 
   const handleDeleteTodo = (id: number) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
@@ -51,19 +53,19 @@ const TodoPage = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Eisenhower Matrix</h1>
-      <p className="mb-4">
-        The Eisenhower Matrix is a task management tool that helps you organize
-        and prioritize tasks by urgency and importance. It divides tasks into
-        four boxes based on the tasks you&apos;ll do first, the tasks
-        you&apos;ll schedule for later, the tasks you&apos;ll delegate, and the
-        tasks you&apos;ll delete.
-      </p>
-      <AddTodoForm onAddTodo={handleAddTodo} />
-      <p className="text-xs mt-4">
-        You can drag and drop items below to reorder. This app uses Local
-        Storage to persist data.
-      </p>
+      {/*<h1 className="text-2xl font-bold mb-4">Eisenhower Matrix</h1>*/}
+      {/*<p className="mb-4">*/}
+      {/*  The Eisenhower Matrix is a task management tool that helps you organize*/}
+      {/*  and prioritize tasks by urgency and importance. It divides tasks into*/}
+      {/*  four boxes based on the tasks you&apos;ll do first, the tasks*/}
+      {/*  you&apos;ll schedule for later, the tasks you&apos;ll delegate, and the*/}
+      {/*  tasks you&apos;ll delete.*/}
+      {/*</p>*/}
+      {/*<AddTodoForm onAddTodo={handleAddTodo} />*/}
+      {/*<p className="text-xs mt-4">*/}
+      {/*  You can drag and drop items below to reorder. This app uses Local*/}
+      {/*  Storage to persist data.*/}
+      {/*</p>*/}
 
       <TodoGrid
         todos={todos}

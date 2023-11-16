@@ -3,7 +3,7 @@ import { useState } from "react";
 type Todo = {
   id: number;
   title: string;
-  quadrant: "Do" | "Decide" | "Delegate" | "Delete";
+  quadrant: "UrgentImportant" | "UrgentLessImportant" | "LessUrgentImportant" | "LessUrgentLessImportant" | "Backlog";
 };
 
 type TodoProps = {
@@ -98,7 +98,6 @@ const Todo = ({ todo, onTodoDelete, onTodoEdit }: TodoProps) => {
           </div>
         </div>
       )}
-      <p className="text-sm mt-2">{todo.quadrant}</p>
     </div>
   );
 };
