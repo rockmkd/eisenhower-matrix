@@ -26,16 +26,6 @@ const TodoPage = () => {
   useEffect(() => {
     console.log( process.env);
     localStorage.setItem("todos", JSON.stringify(todos));
-    axios.all([
-      axios.get(process.env.NEXT_PUBLIC_JIRA_URL + '/test', {
-        headers:{'Authorization': 'Bearer '+ process.env.JIRA_TOKEN }}),
-      axios.get(process.env.NEXT_PUBLIC_JIRA_URL + '', {
-        headers:{'Authorization': 'Bearer ' + process.env.JIRA_TOKEN }}),
-    ]).then(axios.spread((res1, res2) => {
-
-      console.log(res1.data);
-      console.log(res2.data);
-    }));
   }, [todos]);
 
   // const handleAddTodo = (title: string, quadrant: string) => {
